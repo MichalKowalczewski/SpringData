@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<title>Spring MVC CRUD</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+      th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+      rel="stylesheet" media="screen" />
+
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+        th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+<link href="../static/css/spring-core.css"
+      th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+
+        <thead>
+        <tr>
+            <th> Order ID </th>
+            <th> Order Title </th>
+            <th> Order Price </th>
+            <th> User Full Name </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order:${orders}" th:object="${order}">
+            <td><span th:text="*{id}">id</span></td>
+            <td><span th:text="*{title}">title</span></td>
+            <td><span th:text="*{#numbers.formatDecimal(price, 1, 'DEFAULT', 2, 'DEFAULT')}">price</span></td>
+            <!--<td><span th:text="*{#numbers.formatCurrency(price)}">price</span></td> tutaj pojawi się też znanacznik waluty uzależniony od locale - ale o locale będzie przy okazji boota-->
+            <td><span th:text="*{portalUser.firstName}+' '+*{portalUser.lastName}">fullName</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
