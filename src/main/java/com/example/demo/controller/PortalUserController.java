@@ -13,7 +13,7 @@ public class PortalUserController {
 
     @GetMapping("/home")
     public String homePage(){
-        portalUserRepository.findAll().forEach(portalUser -> System.out.println(portalUser.getFirstName()));
+        portalUserRepository.findByFirstName("Maria").forEach(portalUser -> System.out.println(portalUser.getFirstName()));
         return "home";
     }
 }
